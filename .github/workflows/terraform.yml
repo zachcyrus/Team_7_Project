@@ -49,6 +49,8 @@ on:
     branches:
     - terraform
   pull_request:
+    branches:
+    - terraform
 
 jobs:
   terraform:
