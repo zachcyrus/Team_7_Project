@@ -21,6 +21,13 @@ def verify_password(username, password):
         return username
     return None
 
+## Instructions Route for new users
+
+@app.route('/instructions')
+def instructions_page():
+    return render_template('instructions.html')
+
+
 @app.route('/')
 @auth.login_required
 def index():
