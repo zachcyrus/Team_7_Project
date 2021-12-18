@@ -1,0 +1,116 @@
+.description {
+    text-align: justify;
+    text-justify: auto;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#fa {
+    direction: rtl;
+    color: rgb(189, 185, 181);
+}
+
+h1 {
+    font-size: 30px;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+h2 {
+    font-size: 25px;
+    color: rgb(172, 161, 147);
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+.table_header {
+    margin: 0 0 0 0;
+    margin-bottom: 10px;
+    padding: 0 0 0 0;
+    text-align: center;
+}
+
+p {
+    font-size: 10px;
+    color: rgb(163, 157, 150);
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+table, td, th {
+    width: 100%;
+    text-align: center;
+}
+
+th, td {
+    padding-top: 5px;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+}
+
+.id_section {
+    font-size: 10px;
+}
+
+.action_table {
+    width: auto;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.alive {
+    background-color: white;
+}
+.banned {
+    background-color: darkgray;
+}
+.dead {
+    background-color: red;
+}
+
+.mafia {
+    font-size: 20px;
+    color: #cf3232;
+}
+
+.city {
+    font-size: 20px;
+    color: #3283cf;
+}
+
+.serial_killer {
+    font-size: 20px;
+    color: #784e88;
+}
+
+#myProgress {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+  
+#myBar {
+    width: 0%;
+    height: 30px;
+    background-color: #4f8ace;
+    color:#ffffff;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+}
+
+#player_name {
+    width: 20%;
+}
+
+#player_role {
+    width: 20%;
+}
+
+#is_comment {
+    width: 5%;
+}
