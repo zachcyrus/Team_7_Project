@@ -21,16 +21,18 @@ def verify_password(username, password):
         return username
     return None
 
-## Instructions Route for new users
+## Index page with instructions
 
-@app.route('/instructions')
+@app.route('/')
 def instructions_page():
     return render_template('instructions.html')
 
 
-@app.route('/')
+## Route for the actual game 
+
+@app.route('/game')
 @auth.login_required
-def index():
+def game_route():
     global id, ip2role_index_name
     username = str(auth.current_user())
     role = ""
