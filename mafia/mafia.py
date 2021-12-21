@@ -1,6 +1,6 @@
 from sys import argv
 from random import randrange, shuffle
-from flask import Flask, render_template, url_for, request
+from flask import Flask, render_template, url_for, request, redirect
 from flask_httpauth import HTTPBasicAuth
 from mafia_params import *
 
@@ -26,6 +26,18 @@ def verify_password(username, password):
 @app.route('/')
 def instructions_page():
     return render_template('instructions.html')
+
+
+## Login Page 
+@app.route('/login', methods=["GET","POST"])
+def login_route():
+    if request.method == "POST":
+        if request.form['name'] and request.form['password'] != '':
+            return redirect(url_for('game_route'))
+
+    else:
+        return render_template('login.html')
+
 
 
 ## Route for the actual game 
