@@ -5,9 +5,9 @@ name: CI
 # Controls when the workflow will run
 on:
   push:
-    branches: [ mafia-development ]
+    branches: [ mafia-dev ]
   pull_request:
-    branches: [ mafia-development ]
+    branches: [ mafia-dev ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
