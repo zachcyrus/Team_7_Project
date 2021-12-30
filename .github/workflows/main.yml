@@ -30,7 +30,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-
   test: 
     needs: build
     runs-on: ubuntu-latest
@@ -52,6 +51,11 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+          
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+        
       - name: Build, tag, and push the image to Amazon ECR
         id: build-image
         env:
