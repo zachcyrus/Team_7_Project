@@ -10,48 +10,62 @@
   <body>
   <div class="container-fluid">
 
+    <a href="{{url_for('game_route')}}" class="link-primary">Link to go to game</a> 
+    <br/>
+    <a href="{{url_for('GOD_PAGE')}}" class="link-primary">Link for the moderator view</a>
+    <p></p>
     <div class="what_is_mafia">
         <h2>What is Mafia?</h2>
         <p>
           Mafia is a social deduction game, created by Dimitry Davidoff in 1986.
           The game models a conflict between two groups: an informed minority (the
-          mafia team), and an uninformed majority (the Residents). At the start of
-          the game, each player is secretly assigned a role affiliated with one of
-          these teams.
+          Mafia team), and an uninformed majority (the Residents).
         </p>
       </div>
       <div class="instructions_block">
         <h2>How to play Mafia</h1>
-          <p>Instructions will be added later</p>
+          <p><u>Instructions</u>:</p>
+          <ol>
+            <li>Mafia is played by two teams, the Mafia and City Teams</li>
+            <li>It has a moderator who does not participate as a player</li>
+            <li>Roles and affiliated team will be assigned once you login and join a game. Some roles have special abilities</li>
+            <li>At the start of the game the players on the Mafia team will be given the identities of their teammates. While the players on the City team are only told the number of players who are Mafia team members but do not know who they are or who their teammates on the City team are either</li>   
+          </ol>
           <p>Testing actions</p>
-        <p> The game has two alternating phases</p>
+        <p><u>The game has two alternating phases</u>:</p>
   
         <div class="night_phase">
             <h3>Night Phase</h3>
             <p>
-              A night role during which those with night killing powers may covertly kill other players
-  
-              All players close their eyes. The GOD then instructs all Mafias to open their eyes and acknowledge their accomplices. The mafias suggest a "victim" by silently gesturing to indicate their target and to show unanimity then Don (Mafia's head) should decide whom to be killed then close their eyes again.
-              A similar process occurs for other roles with nightly actions. In the case of the Detector, the GOD may indicate the target's innocence or guilt by using gestures such as nodding or head shaking.
-  
+              A night role during which those with night killing powers may covertly eliminate other players.
+            </p>
+            <p>             
+              All players close their eyes. The GOD then instructs all Mafias to open their eyes and acknowledge their accomplices. The mafias suggest a "victim" by silently gesturing to indicate their target and to show unanimity then the Don (Mafia's head) should decide whom to be killed then close their eyes again.
+            </p>
+            <p>          
+              A similar process occurs for other roles with nightly actions. In the case of the Detective role, the GOD may indicate the target's innocence or guilt by using gestures such as nodding or head shaking.
             </p>
         </div>
   
         <div class="day_phase">
-  
           <h3>Day Phase</h3>
-  
           <p>
-              A day role, in which surviving players debate the identities of players and vote to eliminate a suspect.
-  
-  The GOD instructs players to open their eyes. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafia and prompt others to vote to eliminate them. If over half of the players do so, the accused person should go to the court.Players which goes to the court may have a speech defending theirselves from not being mafia, then GOD should take votes again and this time the player with maximum vote will dead and night begins. Otherwise, the phase continues until an elimination occurs.
-  Dead players are not permitted to attempt to influence the remainder of the game.Because players have more freedom to deliberate, days tend to be longer than nights.
-  
-  The game continues until a faction achieves its win condition; for the Residents, this usually means eliminating the whole mafia team, while for the minority this usually means reaching numerical parity with the Residents.
+            A day role, in which surviving players debate the identities of players and vote to eliminate a suspect.
+          </p>
+          <p>
+            The GOD instructs players to open their eyes. Discussion ensues among the living players. At any point, a player may accuse someone of being a mafia and prompt others to vote to eliminate them. If over half of the players do so, the accused person should go to the court. Players who go to the court may give a speech defending themselves from not being mafia. Then the GOD should take votes again and this time the player with maximum vote will be eliminated and night begins. Otherwise, the phase continues until an elimination occurs.
+            Dead players are not permitted to attempt to influence the remainder of the game. Because players have more freedom to deliberate, days tend to be longer than nights. 
           </p>
   
         </div>
-  
+
+        <div class="Winning_condition">
+          <h3>How to Win</h3>
+          <p>
+            The game continues until a faction achieves its win condition; for the Residents, this usually means eliminating the whole Mafia team, while for the minority this usually means reaching numerical parity with the Residents.
+          </p>
+        </div>
+
         <div class="define_roles">
             <h3>Roles included in this game:</h3>
         </div>
