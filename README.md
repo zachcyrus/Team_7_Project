@@ -47,6 +47,6 @@
 <h3> Does it need a backend database? How would that work? </h3>
 <li> </li>
 
-<h3> Explain the process of deploying your app. </h3>
+<h3> Explain the process of deploying your app... </h3>
 <li> </li> 
 
