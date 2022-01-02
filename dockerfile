@@ -1,4 +1,3 @@
-
 #Base image
 FROM ubuntu:latest
 COPY ./mafia/ /home/ubuntu/app
