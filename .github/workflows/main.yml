@@ -42,9 +42,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Echo
-        run: echo this is a deployment
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
