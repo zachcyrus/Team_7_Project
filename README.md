@@ -2,30 +2,36 @@
 
 1. Git clone this repository. 
     ```
-    git clone {link to repo}
+    git clone https://github.com/zachcyrus/Team_7_Project.git
     ```
 
-2. Change directory to the location of the repository. 
+2. Change directory to the location of the repository on your machine. 
 
-3. Create a virtual environment (the method for this might change depending on your OS)
+3. Change directory to mafia (this is where the application is located). 
+
+    ```
+    cd ./mafia
+    ```
+
+4. Create a virtual environment (the method for this will change if you're on Windows)
 
     ```
     python3 -m venv venv
     ```
 
-4. Activate the virtual environment 
+5. Activate the virtual environment 
 
     ```
     source ./venv/bin/activate
     ```
 
-5. Install the python dependencies 
+6. Install the python dependencies 
 
     ```
     pip install -r requirements.txt
     ```
 
-6. Run the application 
+7. Run the application 
 
     ```
     python3 ./mafia.py
