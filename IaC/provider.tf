@@ -12,7 +12,7 @@ provider "aws" {
   region = "us-east-1"
   default_tags {
     tags = {
-      Team       = "Team7"
+      Team = "Team7"
     }
   }
 }
