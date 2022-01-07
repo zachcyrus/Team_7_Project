@@ -1,3 +1,4 @@
+=======
 ### Local installation:
 
 1. Git clone this repository. 
@@ -36,4 +37,3 @@
     ```
     python3 ./mafia.py
     ```
-
