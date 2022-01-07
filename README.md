@@ -36,4 +36,3 @@
     ```
     python3 ./mafia.py
     ```
-
