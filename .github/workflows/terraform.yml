@@ -64,11 +64,9 @@ jobs:
         shell: bash
 
     steps:
-   # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        pwd,
-        ls.
+   # Checking Directory
+    - name: Checking Directory
+      run: ls
       
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
