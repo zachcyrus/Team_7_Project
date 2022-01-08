@@ -19,8 +19,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    key        = "terraform/terraform.tfstate"
-    bucket     = "mafia-app-terraform-statefile"
-    region     = "us-east-1"
+    key    = "terraform/terraform.tfstate"
+    bucket = "mafia-app-terraform-statefile"
+    region = "us-east-1"
   }
 }
