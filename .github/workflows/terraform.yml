@@ -70,6 +70,10 @@ jobs:
       
     # Changing Directory
     - name: Changing Directory
+      run: cd ..  
+      
+    # Changing Directory
+    - name: Changing Directory
       run: cd IaC
       
     # Checkout the repository to the GitHub Actions runner
