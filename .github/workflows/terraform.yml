@@ -71,10 +71,9 @@ jobs:
     # Changing Directory
     - name: Changing Directory
       run: cd ..  
-      
-    # Changing Directory
-    - name: Changing Directory
-      run: cd IaC
+    
+    - name: Listing Directory contents
+      run: ls
       
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
