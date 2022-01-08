@@ -68,6 +68,10 @@ jobs:
     - name: Checking Directory
       run: pwd
       
+   # Listing Directory Contents
+    - name: Listing Directory Contents
+      run: ls /home/runner/work/Team_7_Project/Team_7_Project
+      
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v2
