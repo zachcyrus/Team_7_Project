@@ -64,9 +64,13 @@ jobs:
         shell: bash
 
     steps:
-   # Checking Directory
+    # Checking Directory
     - name: Checking Directory
-      run: ls
+      run: pwd
+      
+    # Changing Directory
+    - name: Changing Directory
+      run: cd IaC
       
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
