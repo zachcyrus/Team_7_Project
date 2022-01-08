@@ -20,18 +20,21 @@ jobs:
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python 3.6
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.6
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-      - name: Test with pytest
-        run: pytest -vv
-        
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Python dependencies
+      run: |
+        sudo apt install -y $(grep -o ^[^#][[:alnum:]-]* "packages.list")
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+
+    - name: Test with pytest
+      run: |
+        pytest --exitfirst --verbose --failed-first \
+        --cov=. --cov-report html
   Deploy: 
     # requires the test job to be done before going onto deploy
     needs: test
