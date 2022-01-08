@@ -66,6 +66,7 @@ jobs:
     steps:
     - name: Checking directory
       run: pwd
+      run: ls
       
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
