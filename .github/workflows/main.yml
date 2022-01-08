@@ -27,7 +27,7 @@ jobs:
 
   Deploy: 
     # requires the test job to be done before going onto deploy
-    needs: test
+    needs: build_and_test
     #runs on a ubuntu environment
     runs-on: ubuntu-latest
     steps:
