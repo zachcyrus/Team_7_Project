@@ -10,7 +10,6 @@ terraform {
 # Configure the AWS Provider
 provider "aws" {
   region = "us-east-1"
-  profile = "Team7"
   default_tags {
     tags = {
       Team = "Team7"
@@ -23,6 +22,5 @@ terraform {
     key        = "terraform/terraform.tfstate"
     bucket     = "mafia-app-terraform-statefile"
     region     = "us-east-1"
-    profile    = "Team7"
   }
 }
