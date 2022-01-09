@@ -46,12 +46,12 @@
 
     ```
     # For Mac/Linux OS
-    python3 ./mafia.py
-    ```
+    python3 ./mafia.py 5
+    ``` 
 
     ```
     # For Windows OS
-    python ./mafia.py
+    python ./mafia.py 5
     ```
 
 ### Run with Docker instead 
