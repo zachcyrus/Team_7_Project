@@ -37,7 +37,6 @@ jobs:
     needs: build_and_test
     #runs on a ubuntu environment
     runs-on: ubuntu-latest
-    environment: production
     steps:
       - uses: actions/checkout@v2
       - name: Configure AWS credentials
