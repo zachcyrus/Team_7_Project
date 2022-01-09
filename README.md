@@ -73,7 +73,13 @@
 3. Run a docker container based off the local_mafia_app image. 
 
     ```
-    docker run -d -p 5000:5000 local_mafia_app
+    docker run --name  mafia_container -d -p 5000:5000 local_mafia_app
     ```
 
 4. Go to localhost:5000 in your browser to see the application running
+
+5. When done kill the container 
+
+    ```
+    docker kill mafia_container
+    ```
