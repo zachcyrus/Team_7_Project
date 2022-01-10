@@ -5,13 +5,20 @@
     git clone https://github.com/zachcyrus/Team_7_Project.git
     ```
 
-2. Change directory to the location of the repository and mafia application.
+
+2. Change directory to the location of the repository.
 
     ```
-    cd ./Team_7_Project/mafia
+    cd ./Team_7_Project
     ```
 
-3. Create a virtual environment
+3. Change directory to mafia (this is where the application is located). 
+
+    ```
+    cd ./mafia
+    ```
+
+4. Create a virtual environment (the method for this will change if you're on Windows)
 
     ```
      # For Mac/Linux OS
@@ -22,9 +29,8 @@
     # For Windows OS
     python -m venv venv
     ```
-    
-
-4. Activate the virtual environment
+ 
+5. Activate the virtual environment 
 
     ```
     # For Mac/Linux OS
@@ -36,13 +42,13 @@
     .\venv\Scripts\activate
     ```
 
-5. Install the python dependencies 
+6. Install the python dependencies 
 
     ```
     pip install -r requirements.txt
     ```
 
-6. Run the application 
+7. Run the application 
 
     ```
     # For Mac/Linux OS

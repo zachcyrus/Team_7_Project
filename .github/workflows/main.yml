@@ -6,8 +6,10 @@ name: CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - mafia/**
+  #pull_request:
+    #branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -15,37 +17,32 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  build_and_test:
     runs-on: ubuntu-latest
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: Install dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-  test: 
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
-      - name: Echo
-        run: echo This is a test.
-        
+          python -m pip install --upgrade pip
+          pip install -r ./mafia/requirements.txt
+      - name: Test with pytest
+        #run: pytest -v
+        run: echo 'placeholder'
+  
+
   Deploy: 
-    needs: test
+    # requires the test job to be done before going onto deploy
+    needs: build_and_test
+    #runs on a ubuntu environment
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Echo
-        run: echo this is a deployment
       - name: Configure AWS credentials
+        #uses a github repo to configure credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -53,6 +50,7 @@ jobs:
           aws-region: us-east-1
           
       - name: Login to Amazon ECR
+        #id which can be utilized as a variable later
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
