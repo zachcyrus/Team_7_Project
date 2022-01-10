@@ -6,6 +6,8 @@ name: CI
 on:
   push:
     branches: [ main ]
+    paths:
+      - mafia
   #pull_request:
     #branches: [ main ]
 
