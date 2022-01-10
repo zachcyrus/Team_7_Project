@@ -7,7 +7,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - mafia
+      - mafia/**
   #pull_request:
     #branches: [ main ]
 
