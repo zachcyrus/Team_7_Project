@@ -4,15 +4,6 @@ FROM ubuntu:latest
 COPY ./mafia/ /home/ubuntu/app
 RUN apt-get update && apt-get upgrade -y
 Run apt-get install python3-pip python-dev -y
-
-#Downloading x-ray daemon
-RUN apt-get update && apt-get install -y --force-yes --no-install-recommends apt-transport-https curl ca-certificates wget && apt-get clean && apt-get autoremove && rm -rf /var/lib/apt/lists/*
-RUN wget https://s3.us-east-2.amazonaws.com/aws-xray-assets.us-east-2/xray-daemon/aws-xray-daemon-3.x.deb
-RUN dpkg -i aws-xray-daemon-3.x.deb
-ENTRYPOINT ["/usr/bin/xray", "--bind=0.0.0.0:2000", "--bind-tcp=0.0.0.0:2000"]
-EXPOSE 2000/udp
-EXPOSE 2000/tcp
-
 #changes workdir of environment to the app directory
 WORKDIR /home/ubuntu/app/
 #runs pip to install needed dependencies in requirements.txt
