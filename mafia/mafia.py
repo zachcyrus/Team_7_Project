@@ -1,11 +1,16 @@
 from sys import argv
+from os import environ
 from random import randrange, shuffle
 from flask import Flask, render_template, url_for, request, redirect
 from flask_httpauth import HTTPBasicAuth
 from mafia_params import *
+import pymongo
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
+client = pymongo.MongoClient(environ.get('MONGO_DB_URI'))
+db = client.get_database('total_records')
+records = db.register()
 auth_GOD = HTTPBasicAuth()
 preshared_key = ""
 id = 0
