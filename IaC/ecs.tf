@@ -18,29 +18,49 @@ resource "aws_ecs_service" "Mafia-ecs-service" {
 }
 
 #Creating Task Definition
+# resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
+#   family                   = "MafiaApp"
+#   network_mode             = "awsvpc"
+#   requires_compatibilities = ["FARGATE"]
+#   execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
+#   memory                   = "1024"
+#   cpu                      = "512"
+#   container_definitions    = <<EOF
+# [
+#   {
+#     "name": "test-app",
+#     "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
+#     "memory": 1024,
+#     "cpu": 512,
+#     "essential": true,
+#     "entryPoint": ["/"],
+#     "portMappings": [
+#       {
+#         "containerPort": 5000,
+#         "hostPort": 5000
+#       }
+#     ]
+#   }
+# ]
+# EOF
+# }
+
+
 resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
-  family                   = "MafiaApp"
-  network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
-  execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
-  memory                   = "1024"
-  cpu                      = "512"
-  container_definitions    = <<EOF
-[
-  {
-    "name": "test-app",
-    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
-    "memory": 1024,
-    "cpu": 512,
-    "essential": true,
-    "entryPoint": ["/"],
-    "portMappings": [
-      {
-        "containerPort": 5000,
-        "hostPort": 5000
-      }
-    ]
-  }
-]
-EOF
+  family = "MafiaAppTaskDefinition"
+  container_definitions = jsonencode([
+    {
+      name      = "test-app"
+      image     = "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96"
+      cpu       = 1024
+      memory    = 512
+      essential = true
+      portMappings = [
+        {
+          containerPort = 5000
+          hostPort      = 5000
+        }
+      ]
+    }
+  ])
 }
