@@ -6,11 +6,17 @@ from flask_httpauth import HTTPBasicAuth
 from mafia_params import *
 from database import mongo
 from dotenv import load_dotenv
+import watchtower, logging
 
 load_dotenv()
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = environ.get('MONGO_DB_URI')
+### Logging configs
+handler = watchtower.CloudWatchLogHandler(log_group_name=app.name)
+app.logger.addHandler(handler)
+logging.getLogger('werkzeug').addHandler(handler)
+### End of logging configs
 mongo.init_app(app)
 auth = HTTPBasicAuth()
 auth_GOD = HTTPBasicAuth()
@@ -23,7 +29,9 @@ nComments = 0
 comments_ordered = []
 
 from routes.game_v2 import game_v2
+from routes.logging_route import logging_route
 #app.register_blueprint(game_v2, url_prefix='/game_v2')
+app.register_blueprint(logging_route)
 
 @auth.verify_password
 def verify_password(username, password):
