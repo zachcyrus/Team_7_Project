@@ -13,3 +13,4 @@ pyparsing==3.0.6
 pytest==6.2.5
 toml==0.10.2
 Werkzeug==2.0.2
+aws-xray-sdk==2.4.2
