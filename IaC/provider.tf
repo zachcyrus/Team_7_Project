@@ -10,7 +10,7 @@
 # Configure the AWS Provider
 provider "aws" {
   version = "~> 3.0"
-  region = "us-east-1"
+  region  = "us-east-1"
   default_tags {
     tags = {
       Team = "Team7"
