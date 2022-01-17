@@ -6,7 +6,7 @@ RUN apt-get update && apt-get upgrade -y
 RUN apt-get install awscli -y
 RUN apt-get install python3-pip python-dev -y
 # Configure AWS-Cli with clougwatch IAM role
-RUN aws configure set aws_access_key_id ${LOGGER_AWS_ACCESS_KEY_ID} --profile mafia_cloud_watch_logger \ 
+RUN --mount-type=secret,id=LOGGER_AWS_ACCESS_KEY_ID aws configure set aws_access_key_id ${LOGGER_AWS_ACCESS_KEY_ID} --profile mafia_cloud_watch_logger \ 
     && aws configure set --profile default \ 
     && aws_secret_access_key ${LOGGER_AWS_ACCESS_KEY_SECRET} --profile mafia_cloud_watch_logger \
     && aws configure set region "us-east-1" --profile mafia_cloud_watch_logger 
