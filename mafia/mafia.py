@@ -4,13 +4,15 @@ from random import randrange, shuffle
 from flask import Flask, render_template, url_for, request, redirect
 from flask_httpauth import HTTPBasicAuth
 from mafia_params import *
-import pymongo
+from database import mongo
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
+app.config["MONGO_URI"] = environ.get('MONGO_DB_URI')
+mongo.init_app(app)
 auth = HTTPBasicAuth()
-client = pymongo.MongoClient(environ.get('MONGO_DB_URI'))
-db = client.get_database('total_records')
-records = db.register()
 auth_GOD = HTTPBasicAuth()
 preshared_key = ""
 id = 0
@@ -19,6 +21,9 @@ roles = []
 ip2role_index_name = {}
 nComments = 0
 comments_ordered = []
+
+from routes.game_v2 import game_v2
+#app.register_blueprint(game_v2, url_prefix='/game_v2')
 
 @auth.verify_password
 def verify_password(username, password):
