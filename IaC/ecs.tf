@@ -29,7 +29,7 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
 [
   {
     "name": "test-app",
-    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.59",
+    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
     "memory": 1024,
     "cpu": 512,
     "essential": true,
