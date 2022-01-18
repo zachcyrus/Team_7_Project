@@ -50,6 +50,7 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
   family                   = "MafiaAppTestDefinition"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
+  execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
   cpu                      = 1024
   memory                   = 2048
   container_definitions    = <<TASK_DEFINITION
