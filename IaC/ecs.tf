@@ -61,6 +61,12 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
     "cpu": 512,
     "memory": 1024,
     "essential": true
+    "portMappings": [
+      {
+        "containerPort": 5000,
+        "hostPort": 5000
+      }
+    ]
   }
 ]
 TASK_DEFINITION
