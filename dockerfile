@@ -1,10 +1,12 @@
 #Base image
 FROM ubuntu:latest
+### Setting up envs and secrets
 ARG DEBIAN_FRONTEND=noninteractive
 ARG LOGGER_AWS_ACCESS_KEY_ID
 ARG LOGGER_AWS_ACCESS_KEY_SECRET
 ENV LOGGER_AWS_ACCESS_KEY_ID=${LOGGER_AWS_ACCESS_KEY_ID:-NOT_DEFINED}
 ENV LOGGER_AWS_ACCESS_KEY_SECRET=${LOGGER_AWS_ACCESS_KEY_SECRET:-NOT_DEFINED}
+ENV MONGO_DB_URI='foobar'
 RUN apt-get update && apt-get upgrade -y
 #Install AWS cli for cloudwatch logging
 RUN apt-get install awscli -y
