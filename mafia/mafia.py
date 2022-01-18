@@ -13,6 +13,7 @@ load_dotenv()
 app = Flask(__name__)
 app.config["MONGO_URI"] = environ.get('MONGO_DB_URI')
 ### Logging configs
+logging.basicConfig(level=logging.INFO)
 handler = watchtower.CloudWatchLogHandler(log_group_name=app.name)
 app.logger.addHandler(handler)
 logging.getLogger('werkzeug').addHandler(handler)
@@ -31,7 +32,7 @@ comments_ordered = []
 from routes.game_v2 import game_v2
 from routes.logging_route import logging_route
 #app.register_blueprint(game_v2, url_prefix='/game_v2')
-app.register_blueprint(logging_route)
+#app.register_blueprint(logging_route)
 
 @auth.verify_password
 def verify_password(username, password):
@@ -44,6 +45,14 @@ def verify_password(username, password):
 @app.route('/')
 def instructions_page():
     return render_template('instructions.html')
+
+@app.route('/test_logging')
+def test_route_logging():
+    if request.method == "GET":
+        print('Here is your helpful log')
+        app.logger.error('A user has entered the super secret logging route')
+        return render_template('test.html')
+    
 
 
 ## Login Page 
