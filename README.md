@@ -73,13 +73,13 @@
 2. Build the docker image based off the dockerfile in the root of the repository 
 
     ```
-    docker build -t local_mafia_app . 
+    docker build --build-arg LOGGER_AWS_ACCESS_KEY_ID={your_aws_access_key_kid} --build-arg LOGGER_AWS_ACCESS_KEY_SECRET={your_aws_access_key_secret} -t local_mafia_app:latest . 
     ```
 
 3. Run a docker container based off the local_mafia_app image. 
 
     ```
-    docker run --name  mafia_container -d -p 5000:5000 local_mafia_app
+    docker run --name  mafia_container -d -p 5000:5000 local_mafia_app:latest
     ```
 
 4. Go to localhost:5000 in your browser to see the application running
