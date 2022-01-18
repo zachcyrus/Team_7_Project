@@ -47,20 +47,25 @@ resource "aws_ecs_service" "Mafia-ecs-service" {
 
 
 resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
-  family = "MafiaAppTaskDefinition"
-  container_definitions = jsonencode([
-    {
-      name      = "test-app"
-      image     = "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96"
-      cpu       = 1024
-      memory    = 512
-      essential = true
-      portMappings = [
-        {
-          containerPort = 5000
-          hostPort      = 5000
-        }
-      ]
-    }
-  ])
+  family                   = "MafiaAppTestDefinition"
+  requires_compatibilities = ["FARGATE"]
+  network_mode             = "awsvpc"
+  cpu                      = 1024
+  memory                   = 2048
+  container_definitions    = <<TASK_DEFINITION
+[
+  {
+    "name": "test-app",
+    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
+    "cpu": 512,
+    "memory": 1024,
+    "essential": true
+  }
+]
+TASK_DEFINITION
+
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "ARM64"
+  }
 }
