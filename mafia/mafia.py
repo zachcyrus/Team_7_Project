@@ -18,7 +18,7 @@ handler = watchtower.CloudWatchLogHandler(log_group_name=app.name)
 app.logger.addHandler(handler)
 logging.getLogger('werkzeug').addHandler(handler)
 ### End of logging configs
-mongo.init_app(app)
+#mongo.init_app(app)
 auth = HTTPBasicAuth()
 auth_GOD = HTTPBasicAuth()
 preshared_key = ""
