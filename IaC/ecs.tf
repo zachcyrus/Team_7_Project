@@ -60,7 +60,7 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
     "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
     "cpu": 512,
     "memory": 1024,
-    "essential": true
+    "essential": true,
     "portMappings": [
       {
         "containerPort": 5000,
