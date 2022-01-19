@@ -1,12 +1,6 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches:
-    - terraform
-  pull_request:
-    branches:
-    - terraform
   workflow_call:
     secrets:
       run_number:
