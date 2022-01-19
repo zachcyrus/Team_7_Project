@@ -98,7 +98,6 @@ resource "aws_security_group" "ecs_tasks" {
   }
 }
 
-
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "MafiaApp-ecsTaskExecutionRole"
 
