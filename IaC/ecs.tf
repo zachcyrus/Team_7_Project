@@ -80,28 +80,28 @@ TASK_DEFINITION
 resource "aws_security_group" "ecs_tasks" {
   name   = "ecs-task-sg"
   vpc_id = module.vpc.vpc_id
- 
+
   ingress {
-   protocol         = "tcp"
-   from_port        = 5000
-   to_port          = 5000
-   cidr_blocks      = ["0.0.0.0/0"]
-   ipv6_cidr_blocks = ["::/0"]
+    protocol         = "tcp"
+    from_port        = 5000
+    to_port          = 5000
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
- 
+
   egress {
-   protocol         = "-1"
-   from_port        = 0
-   to_port          = 0
-   cidr_blocks      = ["0.0.0.0/0"]
-   ipv6_cidr_blocks = ["::/0"]
+    protocol         = "-1"
+    from_port        = 0
+    to_port          = 0
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
 
 
 resource "aws_iam_role" "ecs_task_execution_role" {
   name = "MafiaApp-ecsTaskExecutionRole"
- 
+
   assume_role_policy = <<EOF
 {
  "Version": "2012-10-17",
@@ -118,7 +118,7 @@ resource "aws_iam_role" "ecs_task_execution_role" {
 }
 EOF
 }
- 
+
 resource "aws_iam_role_policy_attachment" "ecs-task-execution-role-policy-attachment" {
   role       = aws_iam_role.ecs_task_execution_role.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
