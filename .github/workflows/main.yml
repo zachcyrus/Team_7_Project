@@ -69,6 +69,7 @@ jobs:
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
   call-workflow-passing-data:
+    needs: Deploy
     uses:  zachcyrus/Team_7_Project/.github/workflows/terraform.yml@main
     secrets:
       run_number: ${{ github.run_number }}
