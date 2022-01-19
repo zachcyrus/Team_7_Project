@@ -1,11 +1,14 @@
 name: 'Terraform'
 
 on:
+  push:
+    branches:
+    - terraform
+  pull_request:
+    branches:
+    - terraform
   workflow_call:
-    secrets:
-      run_number:
-        required: true
-  workflow_dispatch:
+  
 jobs:
   IaC:
     name: 'Terraform(IaC)'
