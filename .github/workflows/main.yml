@@ -70,4 +70,9 @@ jobs:
 
   call-workflow-passing-data:
     needs: Deploy
-    uses:  zachcyrus/Team_7_Project/.github/workflows/terraform.yml@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses:  zachcyrus/Team_7_Project/.github/workflows/terraform.yml@main
+      
+
+
