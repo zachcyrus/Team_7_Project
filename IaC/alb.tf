@@ -29,7 +29,7 @@ resource "aws_security_group" "lb_security_group" {
 
 resource "aws_lb_target_group" "target_group" {
   name        = "mafia-cluster-tg"
-  port        = 5000
+  port        = 80
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = data.aws_vpc.main.id

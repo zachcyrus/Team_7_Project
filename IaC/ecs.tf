@@ -8,7 +8,7 @@ resource "aws_ecs_cluster" "MafiaApp" {
 resource "aws_ecs_service" "Mafia-ecs-service" {
   name            = "Mafia-app"
   cluster         = aws_ecs_cluster.MafiaApp.id
-  task_definition = aws_ecs_task_definition.MafiaApp-ecs-task-definition.family
+  task_definition = aws_ecs_task_definition.MafiaApp-ecs-task-definition.arn
   launch_type     = "FARGATE"
   network_configuration {
     subnets          = ["${module.vpc.public_subnets[0]}"]
@@ -21,10 +21,13 @@ resource "aws_ecs_service" "Mafia-ecs-service" {
   }
   load_balancer {
     target_group_arn = aws_lb_target_group.target_group.arn
-    container_name   = "container"
+    container_name   = "test-app"
     container_port   = 5000
   }
   desired_count = 1
+  depends_on = [
+    aws_lb_listener.lb_listener
+  ]
 }
 
 ## Creating Task Definition
@@ -33,7 +36,8 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
   family                   = "MafiaApp"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
-  execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
+  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
+  task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
   memory                   = "1024"
   cpu                      = "512"
   container_definitions    = <<EOF
@@ -44,7 +48,7 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
     "memory": 1024,
     "cpu": 512,
     "essential": true,
-    "entryPoint": ["/"],
+    "entryPoint": [],
     "portMappings": [
       {
         "containerPort": 5000,
@@ -66,7 +70,18 @@ resource "aws_security_group" "ecs-tasks-sg" {
     to_port          = 0
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
+    security_groups = [aws_security_group.lb_security_group.id]
   }
+
+  ingress {
+    protocol         = "tcp"
+    from_port        = 5000
+    to_port          = 5000
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  
 
   egress {
     protocol         = "-1"
