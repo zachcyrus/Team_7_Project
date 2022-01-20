@@ -8,59 +8,43 @@ resource "aws_ecs_cluster" "MafiaApp" {
 resource "aws_ecs_service" "Mafia-ecs-service" {
   name            = "Mafia-app"
   cluster         = aws_ecs_cluster.MafiaApp.id
-  task_definition = aws_ecs_task_definition.MafiaApp-ecs-task-definition.arn
+  task_definition = aws_ecs_task_definition.MafiaApp-ecs-task-definition.family
   launch_type     = "FARGATE"
   network_configuration {
     subnets          = ["${module.vpc.public_subnets[0]}"]
     assign_public_ip = true
+    security_groups = [
+      aws_security_group.ecs-tasks-sg.id,
+      aws_security_group.lb_security_group.id
+
+    ]
+  }
+  load_balancer {
+    target_group_arn = aws_lb_target_group.target_group.arn
+    container_name   = "container"
+    container_port   = 5000
   }
   desired_count = 1
 }
 
-#Creating Task Definition
-# resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
-#   family                   = "MafiaApp"
-#   network_mode             = "awsvpc"
-#   requires_compatibilities = ["FARGATE"]
-#   execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
-#   memory                   = "1024"
-#   cpu                      = "512"
-#   container_definitions    = <<EOF
-# [
-#   {
-#     "name": "test-app",
-#     "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
-#     "memory": 1024,
-#     "cpu": 512,
-#     "essential": true,
-#     "entryPoint": ["/"],
-#     "portMappings": [
-#       {
-#         "containerPort": 5000,
-#         "hostPort": 5000
-#       }
-#     ]
-#   }
-# ]
-# EOF
-# }
-
-#Creating Task Definition
+## Creating Task Definition
+## Remember to terraform the ecr image
 resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
-  family                   = "MafiaAppTestDefinition"
-  requires_compatibilities = ["FARGATE"]
+  family                   = "MafiaApp"
   network_mode             = "awsvpc"
-  execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
-  cpu                      = 1024
-  memory                   = 2048
-  container_definitions    = <<TASK_DEFINITION
+  requires_compatibilities = ["FARGATE"]
+  execution_role_arn       = "arn:aws:iam::649474668035:role/ecsTaskExecutionRole"
+  memory                   = "1024"
+  cpu                      = "512"
+  container_definitions    = <<EOF
 [
   {
     "name": "test-app",
-    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.96",
-    "cpu": 512,
+    "image": "649474668035.dkr.ecr.us-east-1.amazonaws.com/test-app:1.106",
     "memory": 1024,
+    "cpu": 512,
     "essential": true,
+    "entryPoint": ["/"],
     "portMappings": [
       {
         "containerPort": 5000,
@@ -69,22 +53,17 @@ resource "aws_ecs_task_definition" "MafiaApp-ecs-task-definition" {
     ]
   }
 ]
-TASK_DEFINITION
-
-  runtime_platform {
-    operating_system_family = "LINUX"
-    cpu_architecture        = "ARM64"
-  }
+EOF
 }
 
-resource "aws_security_group" "ecs_tasks" {
+resource "aws_security_group" "ecs-tasks-sg" {
   name   = "ecs-task-sg"
   vpc_id = module.vpc.vpc_id
 
   ingress {
     protocol         = "tcp"
-    from_port        = 5000
-    to_port          = 5000
+    from_port        = 0
+    to_port          = 0
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
