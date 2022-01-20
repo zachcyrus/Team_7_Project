@@ -70,7 +70,7 @@ resource "aws_security_group" "ecs-tasks-sg" {
     to_port          = 0
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
-    security_groups = [aws_security_group.lb_security_group.id]
+    security_groups  = [aws_security_group.lb_security_group.id]
   }
 
   ingress {
@@ -81,7 +81,7 @@ resource "aws_security_group" "ecs-tasks-sg" {
     ipv6_cidr_blocks = ["::/0"]
   }
 
-  
+
 
   egress {
     protocol         = "-1"
