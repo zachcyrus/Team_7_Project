@@ -2,6 +2,10 @@
 #Creating ECS Cluster
 resource "aws_ecs_cluster" "MafiaApp" {
   name = "ecs-cluster-for-MafiaApplication"
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
 }
 
 #Creating ECS Service 
