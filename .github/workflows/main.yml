@@ -19,19 +19,21 @@ jobs:
   # This workflow contains a single job called "build"
   build_and_test:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./mafia
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python 3.8
         uses: actions/setup-python@v1
         with:
           python-version: 3.8
-      - name: Install dependencies
+      - name: Set up and Run Tests
         run: |
           python -m pip install --upgrade pip
-          pip install -r ./mafia/requirements.txt
+          pip install -r requirements.txt
       - name: Test with pytest
-        #run: pytest -v
-        run: echo 'placeholder'
+        run: python -m pytest 
   
 
   Deploy: 
@@ -65,3 +67,22 @@ jobs:
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
           echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@97587c9d45a4930bf0e3da8dd2feb2a463cf4a3a
+        with:
+          task-definition: ${{ secrets.ECS_TASK_DEFINITION }}
+          container-name: ${{ secrets.CONTAINER_NAME }}
+          image: ${{ steps.build-image.outputs.image }}
+
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@de0132cf8cdedb79975c6d42b77eb7ea193cf28e
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ secrets.ECS_SERVICE }}
+          cluster: ${{ secrets.ECS_CLUSTER }}
+          wait-for-service-stability: true
+      
+
+
