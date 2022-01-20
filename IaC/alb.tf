@@ -45,7 +45,7 @@ resource "aws_lb_target_group" "target_group" {
   }
 
   tags = {
-    Name        = "mafia-app-lb-tg"
+    Name = "mafia-app-lb-tg"
   }
 }
 
