@@ -108,9 +108,9 @@ def verify_password_god(username, password):
         return username
 
 
-@app.route('/GOD')
+@app.route('/admin')
 @auth_GOD.login_required
-def GOD_PAGE():
+def admin():
     global ip2role_index_name, nComments, comments_ordered
     msg = ""
     if request.args.get("Kill") is not None:
@@ -147,7 +147,7 @@ def GOD_PAGE():
                 comments_ordered.remove(ip)
         else:
             return render_template("404.html", is_farsi=True)
-    return render_template("GOD.html", ip2role_index_name=ip2role_index_name,
+    return render_template("admin.html", ip2role_index_name=ip2role_index_name,
                            prompt_message=msg, roles={role:roles.count(role) for role in set(roles)},
                            comments=comments_ordered, role2team=role2team)
 
@@ -205,7 +205,7 @@ if __name__ == "__main__":
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%^&*()"
     for i in range(4):
         preshared_key += chars[randrange(0, len(chars))]
-    print("_" * 20 + "GOD's password" + "_" * 20)
+    print("_" * 20 + "admin's password" + "_" * 20)
     print(preshared_key)
     print("_" * 54)
     app.run(host="0.0.0.0",
