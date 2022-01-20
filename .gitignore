@@ -130,3 +130,10 @@ dmypy.json
 
 # Vscode
 .vscode
+
+#Terraform
+.terraform*
+*.tfstate
+terraform.tfstate.backup
+
+.DS_Store
