@@ -110,7 +110,7 @@ def verify_password_god(username, password):
 
 @app.route('/admin')
 @auth_GOD.login_required
-def admin():
+def admin_route():
     global ip2role_index_name, nComments, comments_ordered
     msg = ""
     if request.args.get("Kill") is not None:
