@@ -7,9 +7,7 @@ FekroBot::mafia::{{ role_name }}
 {% block import %}
 <script>
     var msg = "Hide your device! after clicking on OK your role will be shown.";
-{% if is_farsi == True %}
-    msg = "دستگاه خود را پنهان کنید! با زدن دکمه زیر نقش شما نشان داده خواهد شد.";
-{% endif %}
+
     alert(msg);
 </script>
 {% endblock %}
@@ -20,17 +18,13 @@ FekroBot::mafia::{{ role_name }}
 
 {% block role_title %}
 <h1>{{ role_name }}
-{% if is_farsi == True %}
-    <h2 id="fa">{{ role_name_fa }}</h2>
-{% endif %}
+
 </h1>
 {% endblock %}
 
 {% block desc %}
 <p>{{ description }}</p>
-{% if is_farsi == True %}
-    <p id="fa">{{ description_fa }}</p>
-{% endif %}
+
 {% endblock %}
 
 {% block id_sec %}
