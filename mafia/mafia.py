@@ -203,8 +203,9 @@ if __name__ == "__main__":
     roles = give_me_roles(ordered_roles[:nPlayers])
     shuffle(roles)
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%^&*()"
-    for i in range(4):
-        preshared_key += chars[randrange(0, len(chars))]
+    # for i in range(4):
+    #     preshared_key += chars[randrange(0, len(chars))]
+    preshared_key= environ.get('ADMIN_KEY')
     print("_" * 20 + "admin's password" + "_" * 20)
     print(preshared_key)
     print("_" * 54)
