@@ -30,7 +30,7 @@ jobs:
           python-version: 3.8
           
       - name: Export region for boto3
-        run: export AWS_DEFAULT_REGION="us-east-1"
+        run: echo "AWS_DEFAULT_REGION=us-east-1" >> $GITHUB_ENV
       - name: Set up and Run Tests
         run: |
           python -m pip install --upgrade pip
