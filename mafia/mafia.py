@@ -194,6 +194,7 @@ def give_me_roles(ordered_roles):
 
 
 if __name__ == "__main__":
+    load_dotenv()
     if len(argv) < 2 or argv[1] in ['--help', 'help', '-h']:
         help_me()
     nPlayers = int(argv[1])
@@ -205,7 +206,8 @@ if __name__ == "__main__":
     chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ123456789!@#$%^&*()"
     # for i in range(4):
     #     preshared_key += chars[randrange(0, len(chars))]
-    preshared_key= environ.get('ADMIN_KEY')
+    import os
+    preshared_key= os.getenv('ADMIN_KEY')
     print("_" * 20 + "admin's password" + "_" * 20)
     print(preshared_key)
     print("_" * 54)
