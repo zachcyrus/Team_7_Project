@@ -30,7 +30,7 @@
       </ul>
     </li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#current-contributors">Contributors</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
@@ -57,6 +57,8 @@ Mafia is a social deduction game, created by Dimitry Davidoff in 1986. The game 
 
 ### Prerequisites 
 
+- [Have Python installed](https://wiki.python.org/moin/BeginnersGuide/Download)
+- [Have Docker installed](https://docs.docker.com/get-docker/)
 
 ### Local installation:
 
@@ -170,5 +172,3 @@ Mafia is a social deduction game, created by Dimitry Davidoff in 1986. The game 
 [![Linkedin Badge](https://img.shields.io/badge/-Sai%20Ho%20Yip-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/saihoyip/)[![Github Badge](https://img.shields.io/badge/Sai%20Ho%20Yip-grey?logo=github&logoColor=white)](https://github.com/SaiHoYip)[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20The%20Above)](https://twitter.com/belledenuit19)
 
 ![Linkedin Badge](https://img.shields.io/badge/-Mohamed%20Hassan-blue?style=flat-square&logo=Linkedin&logoColor=white)[![Github Badge](https://img.shields.io/badge/Mohamed%20Hassan-grey?logo=github&logoColor=white)](hhttps://github.com/Mohamed24444)[![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20The%20Above^2)](https://twitter.com/thezachstack)
-
-
