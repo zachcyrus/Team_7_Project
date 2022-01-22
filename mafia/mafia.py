@@ -76,7 +76,11 @@ def game_route():
     username = str(auth.current_user())
     role = ""
     image_name = ""
-    ip = str(request.remote_addr)
+    #ip = str(request.remote_addr)
+    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+        ip=str(request.environ['REMOTE_ADDR'])
+    else:
+        ip=str(request.environ['HTTP_X_FORWARDED_FOR'])
 
     if ip in ip2role_index_name.keys():
         return render_template("Player.html", player=ip2role_index_name[ip])
