@@ -117,8 +117,8 @@ def verify_password_god(username, password):
 def admin_route():
     global ip2role_index_name, nComments, comments_ordered
     msg = ""
-    if request.args.get("Kill") is not None:
-        ip = request.args.get("Kill")
+    if request.args.get("eliminate") is not None:
+        ip = request.args.get("eliminate")
         if ip in ip2role_index_name.keys():
             if ip2role_index_name[ip][3] == "alive":
                 ip2role_index_name[ip][3] = "dead"

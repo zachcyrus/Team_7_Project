@@ -28,7 +28,7 @@ function delay (URL, delay_time) {
 }
 
 function kill_sound_play(){
-  var kill_sound = document.getElementById("kill");
+  var kill_sound = document.getElementById("eliminate");
   kill_sound.play();
 }
 
